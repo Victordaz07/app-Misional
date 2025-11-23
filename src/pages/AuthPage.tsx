@@ -1,12 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useI18n } from '../context/I18nContext';
 import './AuthPage.css';
 
 const AuthPage: React.FC = () => {
-    const { login, isLoading } = useAuth();
+    const { login, isLoading, userRole } = useAuth();
     const { t } = useI18n();
+    const navigate = useNavigate();
     const [selectedRole, setSelectedRole] = useState<string | null>(null);
+
+    // Redirigir si ya está autenticado
+    useEffect(() => {
+        if (userRole) {
+            navigate('/home', { replace: true });
+        }
+    }, [userRole, navigate]);
 
     const handleRoleSelection = (role: string) => {
         setSelectedRole(role);
@@ -20,6 +29,8 @@ const AuthPage: React.FC = () => {
 
         try {
             await login(selectedRole);
+            // La redirección se hará automáticamente por el useEffect
+            navigate('/home', { replace: true });
         } catch (error) {
             alert(t('auth.loginError'));
             console.error('Login error:', error);

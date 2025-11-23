@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { LESSONS } from '../../../data/lessonsData';
+import { LESSONS } from '../data/lessonsData';
 import { useI18n } from '../context/I18nContext';
 import { useProgress } from '../context/ProgressContext';
 import { NotesService } from '../services/notesService';
-import { TasksService } from '../services/tasksService';
+import { CommitmentsService } from '../services/commitmentsService';
 import './LessonDetail.css';
 
 // Mapeo de IDs de lecciones a claves de i18n
@@ -103,14 +103,12 @@ const LessonDetail: React.FC = () => {
 
   const addCommitment = async (commitmentText: string) => {
     try {
-      const tasks = await TasksService.loadTasks();
-      const newTask = {
-        id: Date.now().toString(),
-        text: commitmentText,
+      await CommitmentsService.addCommitment({
+        title: commitmentText,
+        category: 'spiritual',
         completed: false,
-        createdAt: new Date().toISOString(),
-      };
-      await TasksService.saveTasks([...tasks, newTask]);
+        source: 'lesson',
+      });
       alert(t('lesson.commitmentAdded') || 'Compromiso agregado');
     } catch (error) {
       console.error('Error agregando compromiso:', error);

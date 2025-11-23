@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import AuthPage from '../pages/AuthPage';
 import InvestigatorLayout from '../layouts/InvestigatorLayout';
@@ -8,9 +8,15 @@ import LoadingScreen from '../components/LoadingScreen';
 
 const AppRouter: React.FC = () => {
   const { userRole, isLoading } = useAuth();
+  const location = useLocation();
 
   if (isLoading) {
     return <LoadingScreen />;
+  }
+
+  // Si hay userRole y está en /auth, redirigir a /home
+  if (userRole && location.pathname === '/auth') {
+    return <Navigate to="/home" replace />;
   }
 
   return (
