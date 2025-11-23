@@ -1,0 +1,256 @@
+.commitment-input-section {
+  margin-bottom: 24px;
+}
+
+.commitment-input-group {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.commitment-input-field {
+  flex: 1;
+  min-width: 200px;
+  padding: 12px 16px;
+  border: 2px solid var(--color-primary-light);
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-size-base);
+  font-family: inherit;
+  transition: all var(--transition-base);
+}
+
+.commitment-input-field:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.commitment-category-select {
+  padding: 12px 16px;
+  border: 2px solid var(--color-primary-light);
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-size-base);
+  font-family: inherit;
+  background: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.commitment-category-select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.commitment-add-button {
+  padding: 12px 24px;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  white-space: nowrap;
+}
+
+.commitment-add-button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.commitment-filters {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.filter-chip {
+  padding: 8px 16px;
+  border: 2px solid var(--color-primary-light);
+  background: var(--color-surface);
+  color: var(--color-text);
+  border-radius: var(--border-radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.filter-chip:hover {
+  border-color: var(--color-primary);
+  background: rgba(79, 70, 229, 0.05);
+}
+
+.filter-chip.active {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+.commitments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.commitment-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px;
+  background: var(--color-surface);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 2px solid transparent;
+  transition: all var(--transition-base);
+}
+
+.commitment-item:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-primary-light);
+  transform: translateY(-2px);
+}
+
+.commitment-item.completed {
+  opacity: 0.7;
+  background: var(--color-background-alt);
+}
+
+.commitment-item.completed .commitment-title {
+  text-decoration: line-through;
+  color: var(--color-text-secondary);
+}
+
+.commitment-checkbox-container {
+  padding-top: 4px;
+}
+
+.commitment-checkbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: var(--color-primary);
+}
+
+.commitment-content {
+  flex: 1;
+}
+
+.commitment-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.commitment-title {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  flex: 1;
+}
+
+.commitment-category-badge {
+  padding: 4px 12px;
+  border-radius: var(--border-radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.category-study {
+  background: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+}
+
+.category-spiritual {
+  background: rgba(139, 92, 246, 0.1);
+  color: #8b5cf6;
+}
+
+.category-attendance {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+}
+
+.commitment-description {
+  margin: 8px 0;
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.commitment-due-date {
+  margin-top: 8px;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-tertiary);
+  font-style: italic;
+}
+
+.commitment-delete {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px;
+  opacity: 0.6;
+  transition: all var(--transition-base);
+  align-self: flex-start;
+}
+
+.commitment-delete:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.commitments-empty {
+  text-align: center;
+  padding: 60px 20px;
+  background: var(--color-surface);
+  border-radius: var(--border-radius-lg);
+  border: 2px dashed var(--color-primary-light);
+}
+
+.empty-icon {
+  font-size: 64px;
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+.commitments-empty p {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  margin: 0;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 768px) {
+  .commitment-input-group {
+    flex-direction: column;
+  }
+  
+  .commitment-input-field,
+  .commitment-category-select,
+  .commitment-add-button {
+    width: 100%;
+  }
+  
+  .commitment-header-row {
+    flex-direction: column;
+  }
+  
+  .commitment-category-badge {
+    align-self: flex-start;
+  }
+}
+

@@ -1,0 +1,145 @@
+.baptism-section-card {
+  background: var(--color-surface);
+  border-radius: var(--border-radius-lg);
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  transition: all var(--transition-base);
+}
+
+.baptism-section-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.baptism-section-header {
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+  transition: all var(--transition-base);
+}
+
+.baptism-section-header:hover {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+}
+
+.baptism-section-header h2 {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+}
+
+.section-toggle {
+  font-size: 20px;
+  color: var(--color-primary);
+  transition: transform var(--transition-base);
+}
+
+.baptism-section-content {
+  padding: 24px;
+  animation: slideDown 0.3s ease-out;
+}
+
+.baptism-section-content p {
+  margin: 0;
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  line-height: 1.7;
+  white-space: pre-line;
+}
+
+.baptism-faq-section {
+  margin-top: 32px;
+  background: var(--color-surface);
+  padding: 24px;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.baptism-faq-section h2 {
+  margin: 0 0 20px 0;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.faq-item {
+  background: var(--color-background-alt);
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.faq-question {
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.faq-question:hover {
+  background: rgba(79, 70, 229, 0.05);
+}
+
+.faq-question h3 {
+  margin: 0;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  flex: 1;
+}
+
+.faq-toggle {
+  font-size: 16px;
+  color: var(--color-primary);
+  transition: transform var(--transition-base);
+  margin-left: 12px;
+}
+
+.faq-answer {
+  padding: 0 20px 16px 20px;
+  animation: slideDown 0.3s ease-out;
+}
+
+.faq-answer p {
+  margin: 0;
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  white-space: pre-line;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .baptism-section-header,
+  .faq-question {
+    padding: 16px;
+  }
+  
+  .baptism-section-content {
+    padding: 16px;
+  }
+}
+

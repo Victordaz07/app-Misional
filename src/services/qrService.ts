@@ -1,4 +1,3 @@
-// services/qrService.ts
 // Códigos QR autorizados para misioneros
 const AUTHORIZED_MISSIONARY_CODES = [
     'MISIONERO-AREA-001',
