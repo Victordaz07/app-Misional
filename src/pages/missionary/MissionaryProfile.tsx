@@ -6,11 +6,18 @@ import { Button } from '../../components/Button';
 import './Page.css';
 
 const MissionaryProfile: React.FC = () => {
-  const { logout } = useAuth();
+  const { logout, userRole, login } = useAuth();
   const { t } = useI18n();
 
   const handleLogout = async () => {
     await logout();
+  };
+
+  const handleRoleChange = async (newRole: string) => {
+    if (window.confirm(t('profile.changeRoleConfirm') || '¿Cambiar tu rol? Esto cambiará las funciones disponibles.')) {
+      await login(newRole);
+      window.location.href = '/home';
+    }
   };
 
   return (
@@ -19,6 +26,15 @@ const MissionaryProfile: React.FC = () => {
         <h1>{t('tabs.profile')}</h1>
       </div>
       <div className="page-content">
+        <div className="profile-section">
+          <h2>{t('profile.currentRole') || 'Tu Rol Actual'}</h2>
+          <p>{t('profile.roleDescription') || 'Estás usando la app como: Misionero'}</p>
+          <Button 
+            title={t('profile.switchToInvestigator') || 'Cambiar a modo Investigador'} 
+            onClick={() => handleRoleChange('investigator')} 
+            variant="outline" 
+          />
+        </div>
         <div className="profile-section">
           <LanguagePicker />
         </div>

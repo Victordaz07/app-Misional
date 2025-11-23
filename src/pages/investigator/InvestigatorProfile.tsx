@@ -120,6 +120,25 @@ const InvestigatorProfile: React.FC = () => {
           </button>
         </div>
 
+        {/* Rol */}
+        <div className="profile-card">
+          <h2>{t('profile.currentRole') || 'Tu Rol Actual'}</h2>
+          <p className="profile-card-description">
+            {t('profile.roleDescription') || 'Estás usando la app como: Investigador'}
+          </p>
+          <button
+            onClick={() => {
+              if (window.confirm(t('profile.changeRoleConfirm') || '¿Cambiar a modo Misionero? Esto cambiará las funciones disponibles.'))) {
+                // Cambiar rol requiere actualizar AuthContext
+                window.location.href = '/auth';
+              }
+            }}
+            className="goal-option"
+          >
+            {t('profile.switchToMissionary') || 'Cambiar a modo Misionero'}
+          </button>
+        </div>
+
         {/* Idioma */}
         <div className="profile-card">
           <h2>{t('profile.language')}</h2>

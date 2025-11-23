@@ -19,6 +19,16 @@ const AppRouter: React.FC = () => {
     return <Navigate to="/home" replace />;
   }
 
+  // Protección de rutas: si intenta acceder a rutas de misionero sin ser misionero
+  if (userRole !== 'missionary' && location.pathname.startsWith('/missionary')) {
+    return <Navigate to="/home" replace />;
+  }
+
+  // Protección de rutas: si intenta acceder a rutas de investigador siendo misionero
+  if (userRole === 'missionary' && (location.pathname.startsWith('/baptism') || location.pathname.startsWith('/progress'))) {
+    return <Navigate to="/home" replace />;
+  }
+
   return (
     <Routes>
       {userRole ? (

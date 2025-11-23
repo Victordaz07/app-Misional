@@ -18,7 +18,7 @@ const MissionaryLayout: React.FC = () => {
     { path: '/agenda', label: t('tabs.agenda'), icon: '📅' },
     { path: '/people', label: t('tabs.people'), icon: '👥' },
     { path: '/tasks', label: t('tabs.tasks'), icon: '✅' },
-    { path: '/lessons', label: t('tabs.lessons'), icon: '📖' },
+    { path: '/lessons', label: t('missionary.header') || 'Mis Lecciones', icon: '📖' },
     { path: '/profile', label: t('tabs.profile'), icon: '👤' },
   ];
 
@@ -31,6 +31,7 @@ const MissionaryLayout: React.FC = () => {
           <Route path="/people" element={<MissionaryPeople />} />
           <Route path="/tasks" element={<TasksPage />} />
           <Route path="/lessons/*" element={<MissionaryLessons />} />
+          <Route path="/missionary/lessons/*" element={<MissionaryLessons />} />
           <Route path="/profile" element={<MissionaryProfile />} />
           <Route path="/" element={<Navigate to="/home" replace />} />
         </Routes>

@@ -6,6 +6,7 @@ import esTranslations from '../../i18n/es.json';
 import enTranslations from '../../i18n/en.json';
 import frTranslations from '../../i18n/fr.json';
 import ptTranslations from '../../i18n/pt.json';
+import missionaryEsTranslations from '../../i18n/missionary.es.json';
 
 const dictionaries = {
     es: esTranslations,
@@ -14,12 +15,21 @@ const dictionaries = {
     pt: ptTranslations,
 };
 
+// Diccionario de misioneros (solo español por ahora)
+const missionaryDictionaries = {
+    es: missionaryEsTranslations,
+    en: {}, // TODO: Agregar cuando tengamos las traducciones
+    fr: {},
+    pt: {},
+};
+
 export type Locale = 'es' | 'en' | 'fr' | 'pt';
 
 interface I18nContextType {
     locale: Locale;
     setLocale: (locale: Locale) => Promise<void>;
     t: (path: string, vars?: Record<string, string | number>) => string;
+    setUserRole: (role: string | null) => void;
 }
 
 const I18nContext = createContext<I18nContextType | undefined>(undefined);
@@ -30,10 +40,26 @@ interface I18nProviderProps {
 
 export const I18nProvider: React.FC<I18nProviderProps> = ({ children }) => {
     const [locale, setLocaleState] = useState<Locale>('es');
+    const [userRole, setUserRoleState] = useState<string | null>(null);
 
     useEffect(() => {
         loadLocale();
-    }, []);
+        // Cargar rol desde storage
+        const storedRole = StorageService.getItem('userRole');
+        if (storedRole) {
+            setUserRoleState(storedRole);
+        }
+        
+        // Escuchar cambios en storage (para sincronizar con AuthContext)
+        const interval = setInterval(() => {
+            const currentRole = StorageService.getItem('userRole');
+            if (currentRole !== userRole) {
+                setUserRoleState(currentRole);
+            }
+        }, 500);
+        
+        return () => clearInterval(interval);
+    }, [userRole]);
 
     const loadLocale = async () => {
         try {
@@ -63,6 +89,20 @@ export const I18nProvider: React.FC<I18nProviderProps> = ({ children }) => {
     };
 
     const t = (path: string, vars?: Record<string, string | number>): string => {
+        // Si es misionero y la clave empieza con "missionary.", buscar primero en missionaryDictionaries
+        if (userRole === 'missionary' && path.startsWith('missionary.')) {
+            const missionaryTranslations = missionaryDictionaries[locale] as Record<string, string>;
+            const missionaryValue = missionaryTranslations[path];
+            if (missionaryValue !== undefined) {
+                if (vars && typeof missionaryValue === 'string') {
+                    return missionaryValue.replace(/\{\{(\w+)\}\}/g, (match, key) => {
+                        return vars[key]?.toString() || match;
+                    });
+                }
+                return missionaryValue.toString();
+            }
+        }
+
         const currentTranslations = dictionaries[locale] as Record<string, string>;
         const value = currentTranslations[path];
 
@@ -94,8 +134,12 @@ export const I18nProvider: React.FC<I18nProviderProps> = ({ children }) => {
         return value.toString();
     };
 
+    const setUserRole = (role: string | null) => {
+        setUserRoleState(role);
+    };
+
     return (
-        <I18nContext.Provider value={{ locale, setLocale, t }}>
+        <I18nContext.Provider value={{ locale, setLocale, t, setUserRole }}>
             {children}
         </I18nContext.Provider>
     );

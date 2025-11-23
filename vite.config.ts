@@ -14,6 +14,10 @@ export default defineConfig({
     port: 3000,
     open: true,
     host: true, // Permite conexiones desde la red local
+    allowedHosts: [
+      '.loca.lt', // Permite todos los hosts de localtunnel
+      'localhost',
+    ],
   },
   build: {
     outDir: 'dist',
