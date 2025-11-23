@@ -1,0 +1,163 @@
+.lessons-list-page {
+  min-height: 100%;
+  background-color: transparent;
+}
+
+.lessons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+  padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.lesson-card {
+  background: var(--color-surface);
+  border-radius: var(--border-radius-xl);
+  padding: 28px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  text-decoration: none;
+  color: inherit;
+  transition: all var(--transition-base);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.lesson-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-primary-light) 50%, var(--color-secondary) 100%);
+  transform: scaleX(0);
+  transition: transform var(--transition-base);
+  transform-origin: left;
+}
+
+.lesson-card:hover::before {
+  transform: scaleX(1);
+}
+
+.lesson-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--color-primary-light);
+}
+
+.lesson-card.completed {
+  border: 2px solid var(--color-success);
+  background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-success-light) 100%);
+}
+
+.lesson-card.completed::before {
+  background: linear-gradient(90deg, var(--color-success) 0%, var(--color-secondary) 100%);
+  transform: scaleX(1);
+}
+
+.lesson-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.lesson-card-header h3 {
+  margin: 0;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  flex: 1;
+  line-height: 1.4;
+}
+
+.completed-badge {
+  background: linear-gradient(135deg, var(--color-success) 0%, var(--color-secondary) 100%);
+  color: white;
+  border-radius: var(--border-radius-full);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: var(--font-weight-bold);
+  flex-shrink: 0;
+  box-shadow: var(--shadow-sm);
+  animation: scaleIn var(--transition-base) ease-out;
+}
+
+.lesson-description {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-base);
+  margin: 0;
+  flex: 1;
+  line-height: 1.6;
+}
+
+.lesson-progress {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 10px;
+  background-color: var(--color-background-alt);
+  border-radius: var(--border-radius-full);
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-primary-light) 50%, var(--color-secondary) 100%);
+  transition: width var(--transition-slow) ease;
+  border-radius: var(--border-radius-full);
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shimmer 2s infinite;
+}
+
+.progress-text {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-semibold);
+  min-width: 45px;
+  text-align: right;
+}
+
+.lesson-card.completed .progress-fill {
+  background: linear-gradient(90deg, var(--color-success) 0%, var(--color-secondary) 100%);
+}
+
+@media (max-width: 768px) {
+  .lessons-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 16px;
+  }
+  
+  .lesson-card {
+    padding: 20px;
+  }
+}
+
