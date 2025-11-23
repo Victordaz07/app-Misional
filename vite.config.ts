@@ -13,6 +13,7 @@ export default defineConfig({
   server: {
     port: 3000,
     open: true,
+    host: true, // Permite conexiones desde la red local
   },
   build: {
     outDir: 'dist',
