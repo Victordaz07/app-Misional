@@ -14,7 +14,7 @@ const MissionaryLessonsList: React.FC = () => {
     <div className="page">
       <div className="page-header">
         <h1>{t('missionary.header')}</h1>
-        <p>{t('missionary.subheader')}</p>
+        <p className="page-subtitle">{t('missionary.subheader')}</p>
       </div>
       <div className="page-content">
         <div className="missionary-lessons-grid">

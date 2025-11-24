@@ -35,6 +35,13 @@
   font-weight: var(--font-weight-normal);
 }
 
+.page-subtitle {
+  color: var(--color-primary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  margin-top: 4px;
+}
+
 .page-content {
   padding: 24px;
   max-width: 1200px;
