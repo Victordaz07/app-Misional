@@ -16,7 +16,11 @@ const MissionaryProfile: React.FC = () => {
   const handleRoleChange = async (newRole: string) => {
     if (window.confirm(t('profile.changeRoleConfirm') || '¿Cambiar tu rol? Esto cambiará las funciones disponibles.')) {
       await login(newRole);
-      window.location.href = '/home';
+      if (newRole === 'member') {
+        window.location.href = '/member/home';
+      } else {
+        window.location.href = '/home';
+      }
     }
   };
 
@@ -29,11 +33,18 @@ const MissionaryProfile: React.FC = () => {
         <div className="profile-section">
           <h2>{t('profile.currentRole') || 'Tu Rol Actual'}</h2>
           <p>{t('profile.roleDescription') || 'Estás usando la app como: Misionero'}</p>
-          <Button 
-            title={t('profile.switchToInvestigator') || 'Cambiar a modo Investigador'} 
-            onClick={() => handleRoleChange('investigator')} 
-            variant="outline" 
-          />
+          <div className="profile-role-actions">
+            <Button 
+              title={t('profile.switchToInvestigator') || 'Cambiar a modo Investigador'} 
+              onClick={() => handleRoleChange('investigator')} 
+              variant="outline" 
+            />
+            <Button 
+              title={t('profile.switchToMember') || 'Cambiar a modo Miembro'} 
+              onClick={() => handleRoleChange('member')} 
+              variant="outline" 
+            />
+          </div>
         </div>
         <div className="profile-section">
           <LanguagePicker />

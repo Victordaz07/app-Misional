@@ -6,7 +6,7 @@ import MissionaryAgenda from '../pages/missionary/MissionaryAgenda';
 import MissionaryPeople from '../pages/missionary/MissionaryPeople';
 import MissionaryLessons from '../pages/missionary/MissionaryLessons';
 import MissionaryProfile from '../pages/missionary/MissionaryProfile';
-import TasksPage from '../pages/TasksPage';
+import CommitmentsPage from '../pages/CommitmentsPage';
 import './Layout.css';
 
 const MissionaryLayout: React.FC = () => {
@@ -29,7 +29,7 @@ const MissionaryLayout: React.FC = () => {
           <Route path="/home" element={<MissionaryHome />} />
           <Route path="/agenda" element={<MissionaryAgenda />} />
           <Route path="/people" element={<MissionaryPeople />} />
-          <Route path="/tasks" element={<TasksPage />} />
+          <Route path="/tasks" element={<CommitmentsPage />} />
           <Route path="/lessons/*" element={<MissionaryLessons />} />
           <Route path="/missionary/lessons/*" element={<MissionaryLessons />} />
           <Route path="/profile" element={<MissionaryProfile />} />

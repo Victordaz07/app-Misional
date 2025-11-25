@@ -3,9 +3,18 @@ import ReactDOM from 'react-dom/client'
 import App from './App'
 import './styles/global.css'
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+console.log('🚀 Iniciando aplicación...');
+
+const rootElement = document.getElementById('root');
+if (!rootElement) {
+  throw new Error('No se encontró el elemento root');
+}
+
+ReactDOM.createRoot(rootElement).render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-)
+);
+
+console.log('✅ Aplicación renderizada');
 

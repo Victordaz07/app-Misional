@@ -39,13 +39,37 @@ const InvestigatorBaptism: React.FC = () => {
     },
   ];
 
-  const faqItems = [
-    { q: 'baptism.faq1.q', a: 'baptism.faq1.a' },
-    { q: 'baptism.faq2.q', a: 'baptism.faq2.a' },
-    { q: 'baptism.faq3.q', a: 'baptism.faq3.a' },
-    { q: 'baptism.faq4.q', a: 'baptism.faq4.a' },
-    { q: 'baptism.faq5.q', a: 'baptism.faq5.a' },
-    { q: 'baptism.faq6.q', a: 'baptism.faq6.a' },
+  const actionSteps = [
+    {
+      id: 'schedule',
+      icon: '🗓️',
+      titleKey: 'baptism.actionSteps.schedule.title',
+      descriptionKey: 'baptism.actionSteps.schedule.description',
+    },
+    {
+      id: 'sacrament',
+      icon: '⛪',
+      titleKey: 'baptism.actionSteps.attendSacrament.title',
+      descriptionKey: 'baptism.actionSteps.attendSacrament.description',
+    },
+    {
+      id: 'study',
+      icon: '📖',
+      titleKey: 'baptism.actionSteps.dailyStudy.title',
+      descriptionKey: 'baptism.actionSteps.dailyStudy.description',
+    },
+    {
+      id: 'invite',
+      icon: '🤝',
+      titleKey: 'baptism.actionSteps.inviteSupport.title',
+      descriptionKey: 'baptism.actionSteps.inviteSupport.description',
+    },
+    {
+      id: 'logistics',
+      icon: '🎒',
+      titleKey: 'baptism.actionSteps.prepareLogistics.title',
+      descriptionKey: 'baptism.actionSteps.prepareLogistics.description',
+    },
   ];
 
   return (
@@ -75,30 +99,22 @@ const InvestigatorBaptism: React.FC = () => {
           );
         })}
 
-        {/* Preguntas Frecuentes */}
-        <div className="baptism-faq-section">
-          <h2>{t('baptism.faqTitle') || 'Preguntas Frecuentes'}</h2>
-          <div className="faq-list">
-            {faqItems.map((faq, index) => {
-              const faqId = `faq${index + 1}`;
-              const isExpanded = expandedSection === faqId;
-              return (
-                <div key={faqId} className="faq-item">
-                  <div
-                    className="faq-question"
-                    onClick={() => toggleSection(faqId)}
-                  >
-                    <h3>{t(faq.q)}</h3>
-                    <span className="faq-toggle">{isExpanded ? '▼' : '▶'}</span>
-                  </div>
-                  {isExpanded && (
-                    <div className="faq-answer">
-                      <p>{t(faq.a)}</p>
-                    </div>
-                  )}
+        {/* Actionable steps */}
+        <div className="baptism-action-steps">
+          <div className="action-steps-header">
+            <h2>{t('baptism.actionSteps.title')}</h2>
+            <p>{t('baptism.actionSteps.subtitle')}</p>
+          </div>
+          <div className="action-steps-grid">
+            {actionSteps.map((step) => (
+              <div key={step.id} className="action-step-card">
+                <div className="action-step-icon">{step.icon}</div>
+                <div className="action-step-content">
+                  <h3>{t(step.titleKey)}</h3>
+                  <p>{t(step.descriptionKey)}</p>
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
         </div>
       </div>

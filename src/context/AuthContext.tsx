@@ -25,13 +25,16 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const loadStoredRole = async () => {
     try {
       setIsLoading(true);
+      console.log('🔐 AuthContext: Cargando rol almacenado...');
       const storedRole = StorageService.getItem('userRole');
+      console.log('🔐 AuthContext: Rol almacenado:', storedRole);
       if (storedRole) {
         setUserRole(storedRole);
       }
     } catch (error) {
-      console.error('Error loading stored role:', error);
+      console.error('❌ Error loading stored role:', error);
     } finally {
+      console.log('🔐 AuthContext: Finalizando carga, isLoading = false');
       setIsLoading(false);
     }
   };

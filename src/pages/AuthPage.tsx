@@ -29,8 +29,12 @@ const AuthPage: React.FC = () => {
 
         try {
             await login(selectedRole);
-            // La redirección se hará automáticamente por el useEffect
-            navigate('/home', { replace: true });
+            // Redirigir según el rol
+            if (selectedRole === 'member') {
+                navigate('/member/home', { replace: true });
+            } else {
+                navigate('/home', { replace: true });
+            }
         } catch (error) {
             alert(t('auth.loginError'));
             console.error('Login error:', error);
@@ -64,6 +68,15 @@ const AuthPage: React.FC = () => {
                         <span className="role-icon">🙌</span>
                         <span className="role-title">{t('auth.missionary')}</span>
                         <span className="role-description">{t('auth.missionaryDesc')}</span>
+                    </button>
+
+                    <button
+                        className={`role-button ${selectedRole === 'member' ? 'selected' : ''}`}
+                        onClick={() => handleRoleSelection('member')}
+                    >
+                        <span className="role-icon">🕊️</span>
+                        <span className="role-title">{t('auth.member')}</span>
+                        <span className="role-description">{t('auth.memberDesc')}</span>
                     </button>
                 </div>
 

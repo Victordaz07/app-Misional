@@ -52,73 +52,72 @@
   white-space: pre-line;
 }
 
-.baptism-faq-section {
+.baptism-action-steps {
   margin-top: 32px;
   background: var(--color-surface);
-  padding: 24px;
+  padding: 32px;
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(59, 130, 246, 0.1);
 }
 
-.baptism-faq-section h2 {
-  margin: 0 0 20px 0;
+.action-steps-header h2 {
+  margin: 0;
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-semibold);
   color: var(--color-text);
 }
 
-.faq-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+.action-steps-header p {
+  margin: 8px 0 24px 0;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-base);
 }
 
-.faq-item {
+.action-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.action-step-card {
+  display: flex;
+  gap: 16px;
   background: var(--color-background-alt);
-  border-radius: var(--border-radius-md);
-  overflow: hidden;
-  border: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.faq-question {
+  border-radius: var(--border-radius-lg);
   padding: 16px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.05);
   transition: all var(--transition-base);
 }
 
-.faq-question:hover {
-  background: rgba(79, 70, 229, 0.05);
+.action-step-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
-.faq-question h3 {
-  margin: 0;
-  font-size: var(--font-size-base);
+.action-step-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(79, 70, 229, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+.action-step-content h3 {
+  margin: 0 0 6px 0;
+  font-size: var(--font-size-md);
   font-weight: var(--font-weight-semibold);
   color: var(--color-text);
-  flex: 1;
 }
 
-.faq-toggle {
-  font-size: 16px;
-  color: var(--color-primary);
-  transition: transform var(--transition-base);
-  margin-left: 12px;
-}
-
-.faq-answer {
-  padding: 0 20px 16px 20px;
-  animation: slideDown 0.3s ease-out;
-}
-
-.faq-answer p {
+.action-step-content p {
   margin: 0;
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-sm);
   color: var(--color-text-secondary);
-  line-height: 1.7;
-  white-space: pre-line;
+  line-height: 1.5;
 }
 
 @keyframes slideDown {

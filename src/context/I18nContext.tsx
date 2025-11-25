@@ -6,7 +6,11 @@ import esTranslations from '../../i18n/es.json';
 import enTranslations from '../../i18n/en.json';
 import frTranslations from '../../i18n/fr.json';
 import ptTranslations from '../../i18n/pt.json';
-import missionaryEsTranslations from '../../i18n/missionary.es.json';
+import missionaryEsTranslations from '../i18n/missionary.es.json';
+import memberEsTranslations from '../i18n/member.es.json';
+import memberEnTranslations from '../i18n/member.en.json';
+import memberFrTranslations from '../i18n/member.fr.json';
+import memberPtTranslations from '../i18n/member.pt.json';
 
 const dictionaries = {
     es: esTranslations,
@@ -23,6 +27,13 @@ const missionaryDictionaries = {
     pt: {},
 };
 
+const memberDictionaries = {
+    es: memberEsTranslations,
+    en: memberEnTranslations,
+    fr: memberFrTranslations,
+    pt: memberPtTranslations,
+};
+
 export type Locale = 'es' | 'en' | 'fr' | 'pt';
 
 interface I18nContextType {
@@ -33,6 +44,34 @@ interface I18nContextType {
 }
 
 const I18nContext = createContext<I18nContextType | undefined>(undefined);
+
+// Helper to get nested value from object using dot notation
+const getNestedValue = (obj: Record<string, any>, path: string): any => {
+    const keys = path.split('.');
+    let current = obj;
+    for (const key of keys) {
+        if (current && typeof current === 'object' && key in current) {
+            current = current[key];
+        } else {
+            return undefined;
+        }
+    }
+    return current;
+};
+
+// Helper to apply variable substitution
+const applyVars = (value: any, vars?: Record<string, string | number>): string => {
+    if (value === undefined || value === null) {
+        return '';
+    }
+    const str = value.toString();
+    if (vars) {
+        return str.replace(/\{\{(\w+)\}\}/g, (match, key) => {
+            return vars[key]?.toString() || match;
+        });
+    }
+    return str;
+};
 
 interface I18nProviderProps {
     children: ReactNode;
@@ -50,15 +89,30 @@ export const I18nProvider: React.FC<I18nProviderProps> = ({ children }) => {
             setUserRoleState(storedRole);
         }
         
-        // Escuchar cambios en storage (para sincronizar con AuthContext)
-        const interval = setInterval(() => {
+        // Escuchar cambios en storage usando storage event (más eficiente)
+        const handleStorageChange = (e: StorageEvent) => {
+            if (e.key === 'userRole') {
+                setUserRoleState(e.newValue);
+            }
+        };
+        
+        window.addEventListener('storage', handleStorageChange);
+        
+        // También escuchar cambios locales (mismo tab)
+        const checkRole = () => {
             const currentRole = StorageService.getItem('userRole');
             if (currentRole !== userRole) {
                 setUserRoleState(currentRole);
             }
-        }, 500);
+        };
         
-        return () => clearInterval(interval);
+        // Usar un intervalo más largo para evitar loops
+        const interval = setInterval(checkRole, 2000);
+        
+        return () => {
+            window.removeEventListener('storage', handleStorageChange);
+            clearInterval(interval);
+        };
     }, [userRole]);
 
     const loadLocale = async () => {
@@ -88,11 +142,24 @@ export const I18nProvider: React.FC<I18nProviderProps> = ({ children }) => {
         }
     };
 
+    // Helper para navegar objetos anidados usando path con puntos
+    const getNestedValue = (obj: any, path: string): any => {
+        const keys = path.split('.');
+        let current = obj;
+        for (const key of keys) {
+            if (current === undefined || current === null) {
+                return undefined;
+            }
+            current = current[key];
+        }
+        return current;
+    };
+
     const t = (path: string, vars?: Record<string, string | number>): string => {
         // Si es misionero y la clave empieza con "missionary.", buscar primero en missionaryDictionaries
         if (userRole === 'missionary' && path.startsWith('missionary.')) {
-            const missionaryTranslations = missionaryDictionaries[locale] as Record<string, string>;
-            const missionaryValue = missionaryTranslations[path];
+            const missionaryTranslations = missionaryDictionaries[locale] as Record<string, any>;
+            const missionaryValue = getNestedValue(missionaryTranslations, path);
             if (missionaryValue !== undefined) {
                 if (vars && typeof missionaryValue === 'string') {
                     return missionaryValue.replace(/\{\{(\w+)\}\}/g, (match, key) => {
@@ -100,6 +167,24 @@ export const I18nProvider: React.FC<I18nProviderProps> = ({ children }) => {
                     });
                 }
                 return missionaryValue.toString();
+            }
+        }
+
+        if (userRole === 'member' && path.startsWith('member.')) {
+            const memberTranslations = memberDictionaries[locale] as Record<string, any>;
+            const memberValue = getNestedValue(memberTranslations, path);
+            const fallbackMemberTranslations = memberDictionaries.en as Record<string, any>;
+            const fallbackMemberValue = getNestedValue(fallbackMemberTranslations, path);
+
+            const resolvedMemberValue = memberValue ?? fallbackMemberValue;
+
+            if (resolvedMemberValue !== undefined && resolvedMemberValue !== null) {
+                if (vars && typeof resolvedMemberValue === 'string') {
+                    return resolvedMemberValue.replace(/\{\{(\w+)\}\}/g, (match, key) => {
+                        return vars[key]?.toString() || match;
+                    });
+                }
+                return resolvedMemberValue.toString();
             }
         }
 

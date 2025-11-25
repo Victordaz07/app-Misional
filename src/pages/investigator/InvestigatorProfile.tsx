@@ -8,7 +8,7 @@ import './Page.css';
 import './ProfilePage.css';
 
 const InvestigatorProfile: React.FC = () => {
-  const { logout } = useAuth();
+  const { logout, login } = useAuth();
   const { t } = useI18n();
   const [mainGoal, setMainGoal] = useState<MainGoal | ''>('');
   const [customGoal, setCustomGoal] = useState('');
@@ -126,17 +126,44 @@ const InvestigatorProfile: React.FC = () => {
           <p className="profile-card-description">
             {t('profile.roleDescription') || 'Estás usando la app como: Investigador'}
           </p>
-          <button
-            onClick={() => {
-              if (window.confirm(t('profile.changeRoleConfirm') || '¿Cambiar a modo Misionero? Esto cambiará las funciones disponibles.'))) {
-                // Cambiar rol requiere actualizar AuthContext
-                window.location.href = '/auth';
-              }
-            }}
-            className="goal-option"
-          >
-            {t('profile.switchToMissionary') || 'Cambiar a modo Misionero'}
-          </button>
+          <div className="goal-options">
+            <button
+              onClick={async () => {
+                const confirmMessage = t('profile.changeRoleConfirm') || '¿Cambiar tu rol?';
+                if (window.confirm(confirmMessage)) {
+                  await login('missionary');
+                  window.location.href = '/home';
+                }
+              }}
+              className="goal-option"
+            >
+              {t('profile.switchToMissionary') || 'Cambiar a modo Misionero'}
+            </button>
+            <button
+              onClick={async () => {
+                const confirmMessage = t('profile.changeRoleConfirm') || '¿Cambiar tu rol?';
+                if (window.confirm(confirmMessage)) {
+                  await login('member');
+                  window.location.href = '/member/home';
+                }
+              }}
+              className="goal-option"
+            >
+              {t('profile.switchToMember') || 'Cambiar a modo Miembro'}
+            </button>
+            <button
+              onClick={async () => {
+                const confirmMessage = t('profile.changeRoleConfirm') || '¿Cambiar tu rol?';
+                if (window.confirm(confirmMessage)) {
+                  await login('member');
+                  window.location.href = '/member/home';
+                }
+              }}
+              className="goal-option"
+            >
+              {t('profile.switchToMember') || 'Cambiar a modo Miembro'}
+            </button>
+          </div>
         </div>
 
         {/* Idioma */}
