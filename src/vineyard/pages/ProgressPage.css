@@ -1,0 +1,451 @@
+/* Progress Page - New Design Matching HTML Template */
+.progress-page-new {
+  background: linear-gradient(to bottom right, #f5f3ff, #dbeafe);
+  min-height: 100vh;
+}
+
+.progress-page-content-new {
+  padding: 1rem 1.5rem;
+  max-width: 100%;
+  padding-bottom: 6rem; /* Space for bottom nav if needed */
+}
+
+.progress-back-button {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 100;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.5rem 0.875rem;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(224, 230, 255, 0.8);
+  border-radius: 1000px;
+  color: #5B6C94;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  -webkit-tap-highlight-color: transparent;
+  width: auto;
+  min-width: auto;
+  max-width: none;
+  white-space: nowrap;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.progress-back-button:hover {
+  background: rgba(255, 255, 255, 1);
+  border-color: #9AB7FF;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(154, 183, 255, 0.2);
+}
+
+.progress-back-button:active {
+  transform: translateY(0);
+}
+
+.progress-back-button svg {
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+
+/* Header */
+.progress-header-new {
+  background: #FFFFFF;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  margin: -1rem -1.5rem 1.5rem -1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.progress-header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.progress-header-icon-new {
+  width: 2rem;
+  height: 2rem;
+  background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-size: 0.875rem;
+}
+
+.progress-header-title-new {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1A1A1A;
+  margin: 0 0 0.25rem 0;
+  line-height: 1.3;
+}
+
+.progress-header-badge-new {
+  font-size: 0.75rem;
+  color: #8b5cf6;
+  font-weight: 500;
+  background: #f3e8ff;
+  padding: 0.125rem 0.5rem;
+  border-radius: 999px;
+}
+
+/* XP Overview Section */
+.progress-xp-section {
+  margin-bottom: 2rem;
+}
+
+.progress-xp-card {
+  background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+  border-radius: 24px;
+  padding: 1.5rem;
+  color: #FFFFFF;
+  box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
+}
+
+.progress-xp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.progress-xp-label {
+  font-size: 0.875rem;
+  opacity: 0.9;
+  margin: 0 0 0.25rem 0;
+}
+
+.progress-xp-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.progress-xp-star {
+  width: 4rem;
+  height: 4rem;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fbbf24;
+  font-size: 1.5rem;
+}
+
+.progress-xp-stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.progress-xp-stat {
+  text-align: center;
+  flex: 1;
+}
+
+.progress-xp-stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem 0;
+}
+
+.progress-xp-stat-label {
+  font-size: 0.75rem;
+  opacity: 0.8;
+  margin: 0;
+}
+
+.progress-xp-divider {
+  width: 1px;
+  height: 3rem;
+  background: rgba(255, 255, 255, 0.3);
+  margin: 0 0.5rem;
+}
+
+/* Badges Section */
+.progress-badges-section {
+  margin-bottom: 2rem;
+}
+
+.progress-badges-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.progress-badges-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1A1A1A;
+  margin: 0;
+}
+
+.progress-badges-count {
+  font-size: 0.875rem;
+  color: #8b5cf6;
+  font-weight: 500;
+}
+
+.progress-badges-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.progress-badge-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.progress-badge-item.locked {
+  opacity: 0.4;
+}
+
+.progress-badge-icon {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  font-size: 1.25rem;
+  color: #FFFFFF;
+}
+
+.progress-badge-icon-yellow {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+}
+
+.progress-badge-icon-blue {
+  background: linear-gradient(135deg, #60a5fa, #2563eb);
+}
+
+.progress-badge-icon-green {
+  background: linear-gradient(135deg, #34d399, #059669);
+}
+
+.progress-badge-icon-indigo {
+  background: linear-gradient(135deg, #818cf8, #4f46e5);
+}
+
+.progress-badge-icon-purple {
+  background: linear-gradient(135deg, #a78bfa, #7c3aed);
+}
+
+.progress-badge-icon-amber {
+  background: linear-gradient(135deg, #fbbf24, #d97706);
+}
+
+.progress-badge-icon.locked {
+  background: #e5e7eb;
+  color: #9ca3af;
+  box-shadow: none;
+}
+
+.progress-badge-emoji {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.progress-badge-label {
+  font-size: 0.75rem;
+  color: #4A4A4A;
+  text-align: center;
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.progress-badge-item.locked .progress-badge-label {
+  color: #9ca3af;
+}
+
+/* Actions Section */
+.progress-actions-section {
+  margin-bottom: 2rem;
+}
+
+.progress-actions-card {
+  background: #FFFFFF;
+  border-radius: 24px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.progress-actions-header {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.progress-actions-icon {
+  width: 3rem;
+  height: 3rem;
+  background: #f3e8ff;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+  flex-shrink: 0;
+  font-size: 1.25rem;
+}
+
+.progress-actions-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1A1A1A;
+  margin: 0 0 0.5rem 0;
+}
+
+.progress-actions-subtitle {
+  font-size: 0.875rem;
+  color: #6A6A6A;
+  margin: 0;
+}
+
+.progress-actions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.progress-action-button {
+  width: 100%;
+  border-radius: 18px;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.progress-action-primary {
+  background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+}
+
+.progress-action-primary:hover {
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+  transform: translateY(-1px);
+}
+
+.progress-action-secondary {
+  background: #FFFFFF;
+  border: 2px solid #e9d5ff;
+  color: #1A1A1A;
+}
+
+.progress-action-secondary:hover {
+  border-color: #c084fc;
+}
+
+.progress-action-content {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.progress-action-icon {
+  font-size: 1.125rem;
+  margin-right: 0.75rem;
+  color: inherit;
+}
+
+.progress-action-icon-green {
+  color: #059669;
+}
+
+.progress-action-icon-blue {
+  color: #2563eb;
+}
+
+.progress-action-text {
+  text-align: left;
+}
+
+.progress-action-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin: 0 0 0.125rem 0;
+  color: inherit;
+}
+
+.progress-action-subtitle {
+  font-size: 0.75rem;
+  opacity: 0.9;
+  margin: 0;
+  color: inherit;
+}
+
+.progress-action-primary .progress-action-subtitle {
+  opacity: 0.9;
+}
+
+.progress-action-secondary .progress-action-subtitle {
+  color: #6A6A6A;
+}
+
+.progress-action-arrow {
+  font-size: 1rem;
+  opacity: 0.7;
+  margin-left: 0.75rem;
+}
+
+/* Encouragement Section */
+.progress-encouragement-section {
+  margin-bottom: 2rem;
+}
+
+.progress-encouragement-card {
+  background: linear-gradient(135deg, #10b981, #059669);
+  border-radius: 24px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+  color: #FFFFFF;
+}
+
+.progress-encouragement-content {
+  text-align: center;
+}
+
+.progress-encouragement-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  opacity: 0.9;
+  display: block;
+}
+
+.progress-encouragement-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+}
+
+.progress-encouragement-text {
+  font-size: 0.875rem;
+  opacity: 0.9;
+  margin: 0;
+  line-height: 1.6;
+}
