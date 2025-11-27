@@ -1,1 +1,1 @@
-export { MemberLayout as default } from '../member/layout/MemberLayout';
+export { MemberLayout as default } from '../vineyard/layout/MemberLayout';

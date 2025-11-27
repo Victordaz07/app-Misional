@@ -1,7 +1,10 @@
 import React, { useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { FaArrowLeft } from 'react-icons/fa6';
 import '../Page.css';
 import { useI18n } from '../../context/I18nContext';
 import { getMemberSupportIdeas } from '../../utils/memberData';
+import './MemberMissionarySupport.css';
 
 // Type declaration for browser window
 declare const window:
@@ -33,6 +36,7 @@ const mockActivities = [
 
 const MemberMissionarySupport: React.FC = () => {
   const { t } = useI18n();
+  const navigate = useNavigate();
   const supportIdeas = useMemo(() => getMemberSupportIdeas(t), [t]);
   const [companionForm, setCompanionForm] = useState({
     name: '',
@@ -67,135 +71,162 @@ const MemberMissionarySupport: React.FC = () => {
 
   return (
     <div className="page">
-      <div className="page-header">
-        <h1>{t('member.supportMissionaries.title')}</h1>
-        <p className="page-subtitle">{t('member.supportMissionaries.intro')}</p>
-      </div>
-      <div className="page-content">
-        <div className="profile-card">
-          <h2>{t('member.supportMissionaries.activitiesTitle')}</h2>
-          <div className="friends-list">
+      <button
+        className="support-back-button"
+        onClick={() => navigate(-1)}
+        aria-label={t('common.back') || 'Volver'}
+      >
+        <FaArrowLeft />
+        <span>{t('common.back') || 'Volver'}</span>
+      </button>
+
+      <div className="page-content support-page-content">
+        <header className="support-header-card">
+          <h1 className="support-title">{t('member.supportMissionaries.title')}</h1>
+          <p className="support-subtitle">{t('member.supportMissionaries.intro')}</p>
+        </header>
+
+        <section className="support-section">
+          <h2 className="support-section-title">
+            {t('member.supportMissionaries.activitiesTitle')}
+          </h2>
+          <div className="support-activities-list">
             {mockActivities.map(activity => (
-              <div key={activity.id} className="baptism-section-card">
-                <div className="baptism-section-content">
-                  <h3>{activity.title}</h3>
-                  <p>{activity.date}</p>
-                  <p>{activity.need}</p>
+              <div key={activity.id} className="support-activity-card">
+                <h3 className="support-activity-title">{activity.title}</h3>
+                <div className="support-activity-meta">
+                  <span className="support-activity-date">{activity.date}</span>
+                  <span className="support-activity-separator">•</span>
+                  <span className="support-activity-need">{activity.need}</span>
                 </div>
               </div>
             ))}
           </div>
-        </div>
+        </section>
 
-        <div className="profile-card">
-          <h2>{t('member.ui.offerCompanionship')}</h2>
-          <div className="form-group">
-            <label>{t('member.supportMissionaries.form.name')}</label>
-            <input
-              type="text"
-              value={companionForm.name}
-              onChange={e =>
-                setCompanionForm({
-                  ...companionForm,
-                  name: (e.target as any).value,
-                })
-              }
-            />
+        <section className="support-section">
+          <h2 className="support-section-title">{t('member.ui.offerCompanionship')}</h2>
+          <div className="support-form-card">
+            <div className="form-group">
+              <label className="support-form-label">{t('member.supportMissionaries.form.name')}</label>
+              <input
+                type="text"
+                className="support-form-input"
+                value={companionForm.name}
+                onChange={e =>
+                  setCompanionForm({
+                    ...companionForm,
+                    name: (e.target as any).value,
+                  })
+                }
+              />
+            </div>
+            <div className="form-group">
+              <label className="support-form-label">{t('member.supportMissionaries.form.availability')}</label>
+              <input
+                type="text"
+                className="support-form-input"
+                value={companionForm.availability}
+                onChange={e =>
+                  setCompanionForm({
+                    ...companionForm,
+                    availability: (e.target as any).value,
+                  })
+                }
+              />
+            </div>
+            <div className="form-group">
+              <label className="support-form-label">{t('member.supportMissionaries.form.notes')}</label>
+              <textarea
+                rows={3}
+                className="support-form-textarea"
+                value={companionForm.notes}
+                onChange={e =>
+                  setCompanionForm({
+                    ...companionForm,
+                    notes: (e.target as any).value,
+                  })
+                }
+              />
+            </div>
+            <button className="support-form-button" onClick={handleCompanionSubmit}>
+              {t('member.ui.save')}
+            </button>
           </div>
-          <div className="form-group">
-            <label>{t('member.supportMissionaries.form.availability')}</label>
-            <input
-              type="text"
-              value={companionForm.availability}
-              onChange={e =>
-                setCompanionForm({
-                  ...companionForm,
-                  availability: (e.target as any).value,
-                })
-              }
-            />
-          </div>
-          <div className="form-group">
-            <label>{t('member.supportMissionaries.form.notes')}</label>
-            <textarea
-              rows={3}
-              value={companionForm.notes}
-              onChange={e =>
-                setCompanionForm({
-                  ...companionForm,
-                  notes: (e.target as any).value,
-                })
-              }
-            />
-          </div>
-          <button className="btn-primary" onClick={handleCompanionSubmit}>
-            {t('member.ui.save')}
-          </button>
-        </div>
+        </section>
 
-        <div className="profile-card">
-          <h2>{t('member.ui.sendReferral')}</h2>
-          <div className="form-group">
-            <label>{t('member.supportMissionaries.form.friendName')}</label>
-            <input
-              type="text"
-              value={referralForm.friendName}
-              onChange={e =>
-                setReferralForm({
-                  ...referralForm,
-                  friendName: (e.target as any).value,
-                })
-              }
-            />
+        <section className="support-section">
+          <h2 className="support-section-title">{t('member.ui.sendReferral')}</h2>
+          <div className="support-form-card">
+            <div className="form-group">
+              <label className="support-form-label">{t('member.supportMissionaries.form.friendName')}</label>
+              <input
+                type="text"
+                className="support-form-input"
+                value={referralForm.friendName}
+                onChange={e =>
+                  setReferralForm({
+                    ...referralForm,
+                    friendName: (e.target as any).value,
+                  })
+                }
+              />
+            </div>
+            <div className="form-group">
+              <label className="support-form-label">{t('member.supportMissionaries.form.contact')}</label>
+              <input
+                type="text"
+                className="support-form-input"
+                value={referralForm.contact}
+                onChange={e =>
+                  setReferralForm({
+                    ...referralForm,
+                    contact: (e.target as any).value,
+                  })
+                }
+              />
+            </div>
+            <div className="form-group">
+              <label className="support-form-label">{t('member.supportMissionaries.form.notes')}</label>
+              <textarea
+                rows={3}
+                className="support-form-textarea"
+                value={referralForm.notes}
+                onChange={e =>
+                  setReferralForm({
+                    ...referralForm,
+                    notes: (e.target as any).value,
+                  })
+                }
+              />
+            </div>
+            <button className="support-form-button" onClick={handleReferralSubmit}>
+              {t('member.ui.save')}
+            </button>
           </div>
-          <div className="form-group">
-            <label>{t('member.supportMissionaries.form.contact')}</label>
-            <input
-              type="text"
-              value={referralForm.contact}
-              onChange={e =>
-                setReferralForm({
-                  ...referralForm,
-                  contact: (e.target as any).value,
-                })
-              }
-            />
-          </div>
-          <div className="form-group">
-            <label>{t('member.supportMissionaries.form.notes')}</label>
-            <textarea
-              rows={3}
-              value={referralForm.notes}
-              onChange={e =>
-                setReferralForm({
-                  ...referralForm,
-                  notes: (e.target as any).value,
-                })
-              }
-            />
-          </div>
-          <button className="btn-primary" onClick={handleReferralSubmit}>
-            {t('member.ui.save')}
-          </button>
-        </div>
+        </section>
 
-        <div className="profile-card">
-          <h2>{t('member.supportMissionaries.howToHelpTitle')}</h2>
-          <ul>
-            {supportIdeas.howToHelp.map((idea, index) => (
-              <li key={index}>{idea}</li>
-            ))}
-          </ul>
-        </div>
+        <section className="support-section">
+          <h2 className="support-section-title">{t('member.supportMissionaries.howToHelpTitle')}</h2>
+          <div className="support-content-card">
+            <ul className="support-list">
+              {supportIdeas.howToHelp.map((idea, index) => (
+                <li key={index} className="support-list-item">{idea}</li>
+              ))}
+            </ul>
+          </div>
+        </section>
 
-        <div className="profile-card">
-          <h2>{t('member.supportMissionaries.attitudeBlock.title')}</h2>
-          <ul>
-            {supportIdeas.attitudePoints.map((idea, index) => (
-              <li key={index}>{idea}</li>
-            ))}
-          </ul>
-        </div>
+        <section className="support-section">
+          <h2 className="support-section-title">{t('member.supportMissionaries.attitudeBlock.title')}</h2>
+          <div className="support-content-card">
+            <ul className="support-list">
+              {supportIdeas.attitudePoints.map((idea, index) => (
+                <li key={index} className="support-list-item">{idea}</li>
+              ))}
+            </ul>
+          </div>
+        </section>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useI18n } from '../context/I18nContext';
 import { CommitmentsService, Commitment, CommitmentCategory } from '../services/commitmentsService';
+import { CustomSelect } from '../vineyard/components/CustomSelect';
 import './Page.css';
 import './CommitmentsPage.css';
 
@@ -100,15 +101,15 @@ const CommitmentsPage: React.FC = () => {
               placeholder={t('tasks.newTask')}
               className="commitment-input-field"
             />
-            <select
+            <CustomSelect
               value={newCommitmentCategory}
-              onChange={(e) => setNewCommitmentCategory(e.target.value as CommitmentCategory)}
-              className="commitment-category-select"
-            >
-              <option value="spiritual">{t('commitments.categorySpiritual') || 'Espiritual'}</option>
-              <option value="study">{t('commitments.categoryStudy') || 'Estudio'}</option>
-              <option value="attendance">{t('commitments.categoryAttendance') || 'Asistencia'}</option>
-            </select>
+              onChange={(value) => setNewCommitmentCategory(value as CommitmentCategory)}
+              options={[
+                { value: 'spiritual', label: t('commitments.categorySpiritual') || 'Espiritual' },
+                { value: 'study', label: t('commitments.categoryStudy') || 'Estudio' },
+                { value: 'attendance', label: t('commitments.categoryAttendance') || 'Asistencia' },
+              ]}
+            />
             <button onClick={addCommitment} className="commitment-add-button">
               {t('tasks.add')}
             </button>

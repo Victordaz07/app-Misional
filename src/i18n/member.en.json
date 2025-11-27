@@ -667,7 +667,7 @@
       "addInteraction": "Log interaction",
       "interactionPlaceholder": "Write a short note about what you did or felt...",
       "readyForMissionaries": "Mark as ready for missionaries",
-      "friendListEmpty": "You haven’t added friends yet. Start with prayer and ask whom you should love better today.",
+      "friendListEmpty": "You haven't added friends yet. Start with prayer and ask whom you should love better today.",
       "activitiesComingSoon": "Scheduled missionary activities coming soon.",
       "offerCompanionship": "Offer to accompany",
       "sendReferral": "Send safe referral",
@@ -677,6 +677,28 @@
       "notes": "Notes",
       "yes": "Yes",
       "no": "No"
+    },
+    "activities": {
+      "category": "Practice",
+      "title": "Interactive activities",
+      "subtitle": "First study, then practice what you've learned.",
+      "description": "Use these dynamics as a complement. First study, then reinforce what you've learned by acting.",
+      "filterByModule": "Filter by module",
+      "allModules": "All modules",
+      "activitiesCount": "activities",
+      "level": "Level",
+      "start": "Start",
+      "selectedActivity": "Selected activity",
+      "selectActivity": "Select an activity",
+      "selectActivityDescription": "Choose a card to open it here. You can repeat them without losing focus on your study."
+    },
+    "activityTypes": {
+      "QUIZ_SINGLE": "Doctrinal Quiz",
+      "SCENARIO": "Real Situations",
+      "QUIZ_SCRIPTURE_MATCH": "Scriptures for Every Need",
+      "CHARACTER_GUESS": "Characters and Examples",
+      "REAL_WORLD_MISSION": "Real-World Missions",
+      "READING_BLOCK": "Reading Blocks"
     }
   }
 }

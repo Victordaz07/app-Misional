@@ -10,6 +10,7 @@ import {
   getMemberFriendDoctrinePoints,
   getMemberFriendReflectionQuestions,
 } from '../../utils/memberData';
+import { CustomSelect } from '../../vineyard/components/CustomSelect';
 
 const preparedLevels: PreparedLevel[] = ['cold', 'warm', 'hot'];
 
@@ -128,17 +129,15 @@ const MemberFriends: React.FC = () => {
             />
           </div>
           <div className="form-group">
-            <label>{t('member.friends.labels.preparedLevel')}</label>
-            <select
+            <CustomSelect
+              label={t('member.friends.labels.preparedLevel')}
               value={form.preparedLevel}
-              onChange={(e) => handleInputChange('preparedLevel', e.target.value as PreparedLevel)}
-            >
-              {preparedLevels.map((level) => (
-                <option key={level} value={level}>
-                  {t(`member.friends.preparedLevels.${level}`)}
-                </option>
-              ))}
-            </select>
+              onChange={(value) => handleInputChange('preparedLevel', value as PreparedLevel)}
+              options={preparedLevels.map((level) => ({
+                value: level,
+                label: t(`member.friends.preparedLevels.${level}`),
+              }))}
+            />
           </div>
           <div className="form-group checkbox">
             <label>
@@ -159,7 +158,7 @@ const MemberFriends: React.FC = () => {
               placeholder={t('member.friends.spiritualNotesHint')}
             />
           </div>
-          <button className="btn-primary" onClick={handleAddFriend}>
+          <button className="btn-primary btn-primary-spaced" onClick={handleAddFriend}>
             {t('member.ui.addFriend')}
           </button>
         </div>

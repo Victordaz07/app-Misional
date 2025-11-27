@@ -677,6 +677,28 @@
       "notes": "Notas",
       "yes": "Sí",
       "no": "No"
+    },
+    "activities": {
+      "category": "Practicar",
+      "title": "Actividades interactivas",
+      "subtitle": "Primero estudia, luego practica lo aprendido.",
+      "description": "Usa estas dinámicas como complemento. Primero estudia, luego refuerza lo aprendido actuando.",
+      "filterByModule": "Filtrar por módulo",
+      "allModules": "Todos los módulos",
+      "activitiesCount": "actividades",
+      "level": "Nivel",
+      "start": "Empezar",
+      "selectedActivity": "Actividad seleccionada",
+      "selectActivity": "Selecciona una actividad",
+      "selectActivityDescription": "Elige una tarjeta para abrirla aquí. Puedes repetirlas sin perder el enfoque del estudio."
+    },
+    "activityTypes": {
+      "QUIZ_SINGLE": "Quiz doctrinal",
+      "SCENARIO": "Situaciones reales",
+      "QUIZ_SCRIPTURE_MATCH": "Escrituras para cada necesidad",
+      "CHARACTER_GUESS": "Personajes y ejemplos",
+      "REAL_WORLD_MISSION": "Misiones en la vida real",
+      "READING_BLOCK": "Bloques de lectura"
     }
   }
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import '../pages/Page.css';
 
 interface NewConvertProgressBarProps {
   value: number;
@@ -9,14 +10,27 @@ export const NewConvertProgressBar: React.FC<NewConvertProgressBarProps> = ({ va
   const pct = Math.round(Math.max(0, Math.min(1, value || 0)) * 100);
 
   return (
-    <div className="space-y-2">
-      <div className="flex items-center justify-between text-sm font-medium text-slate-700">
-        <span>{label}</span>
-        <span className="text-xs text-slate-500">{pct}%</span>
-      </div>
-      <div className="h-2 w-full rounded-full bg-slate-200">
+    <div style={{ marginBottom: '24px' }}>
+      {label && (
+        <div style={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'space-between',
+          marginBottom: '8px',
+          fontSize: 'var(--font-size-sm)',
+          fontWeight: 'var(--font-weight-medium)',
+          color: 'var(--color-text-secondary)'
+        }}>
+          <span>{label}</span>
+          <span style={{ 
+            fontSize: 'var(--font-size-xs)',
+            color: 'var(--color-text-secondary)'
+          }}>{pct}%</span>
+        </div>
+      )}
+      <div className="progress-bar-container">
         <div
-          className="h-2 rounded-full bg-emerald-500 transition-all duration-300"
+          className="progress-bar"
           style={{ width: `${pct}%` }}
         />
       </div>

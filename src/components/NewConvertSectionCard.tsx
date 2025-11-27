@@ -1,5 +1,6 @@
 import React from 'react';
 import type { NewConvertSection } from '../member/data/memberTypes';
+import './NewConvertSectionCard.css';
 
 interface BadgeLabels {
   bullets: string;
@@ -34,34 +35,44 @@ export const NewConvertSectionCard: React.FC<NewConvertSectionCardProps> = ({
 }) => {
   return (
     <article
-      className={`flex flex-col gap-3 rounded-2xl border bg-white p-5 shadow-sm transition ${
-        completed ? 'border-emerald-400' : 'border-slate-200'
-      }`}
+      className={`new-convert-section-card ${completed ? 'completed' : ''}`}
+      onClick={onOpen}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onOpen();
+        }
+      }}
     >
-      <div className="flex items-start justify-between gap-3">
+      <div className="new-convert-section-card-header">
         <div>
-          <h3 className="text-lg font-semibold text-slate-900">{section.title}</h3>
+          <h3 className="new-convert-section-card-title">{section.title}</h3>
           {completed && (
-            <p className="text-xs font-medium text-emerald-600" aria-live="polite">
+            <p className="new-convert-section-card-status" aria-live="polite">
               {completedLabel}
             </p>
           )}
         </div>
       </div>
 
-      <p className="text-sm leading-relaxed text-slate-600">{truncateContent(section.content)}</p>
+      <p className="new-convert-section-card-content">{truncateContent(section.content)}</p>
 
-      <div className="flex flex-wrap gap-2 text-xs text-slate-600">
-        <span className="rounded-full bg-slate-100 px-3 py-1">{badges.bullets}</span>
-        <span className="rounded-full bg-slate-100 px-3 py-1">{badges.scriptures}</span>
-        <span className="rounded-full bg-slate-100 px-3 py-1">{badges.tips}</span>
+      <div className="new-convert-section-card-badges">
+        <span className="new-convert-section-card-badge">{badges.bullets}</span>
+        <span className="new-convert-section-card-badge">{badges.scriptures}</span>
+        <span className="new-convert-section-card-badge">{badges.tips}</span>
       </div>
 
-      <div className="flex justify-end">
+      <div className="new-convert-section-card-actions">
         <button
           type="button"
-          onClick={onOpen}
-          className="rounded-lg bg-emerald-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-emerald-700"
+          onClick={(e) => {
+            e.stopPropagation();
+            onOpen();
+          }}
+          className="new-convert-section-card-button"
         >
           {detailsLabel}
         </button>

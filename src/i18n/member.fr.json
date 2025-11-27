@@ -633,6 +633,28 @@
       "badge.leader": "Dirigeant",
       "title": "Comment voulez-vous voir cette section ?",
       "subtitle": "Votre profil détermine si vous avez accès aux outils de direction. Vous pouvez toujours utiliser la vue membre."
+    },
+    "activities": {
+      "category": "Pratiquer",
+      "title": "Activités interactives",
+      "subtitle": "D'abord étudiez, puis pratiquez ce que vous avez appris.",
+      "description": "Utilisez ces dynamiques comme complément. D'abord étudiez, puis renforcez ce que vous avez appris en agissant.",
+      "filterByModule": "Filtrer par module",
+      "allModules": "Tous les modules",
+      "activitiesCount": "activités",
+      "level": "Niveau",
+      "start": "Commencer",
+      "selectedActivity": "Activité sélectionnée",
+      "selectActivity": "Sélectionnez une activité",
+      "selectActivityDescription": "Choisissez une carte pour l'ouvrir ici. Vous pouvez les répéter sans perdre le focus de votre étude."
+    },
+    "activityTypes": {
+      "QUIZ_SINGLE": "Quiz doctrinal",
+      "SCENARIO": "Situations réelles",
+      "QUIZ_SCRIPTURE_MATCH": "Écritures pour chaque besoin",
+      "CHARACTER_GUESS": "Personnages et exemples",
+      "REAL_WORLD_MISSION": "Missions dans la vie réelle",
+      "READING_BLOCK": "Blocs de lecture"
     }
   }
 }

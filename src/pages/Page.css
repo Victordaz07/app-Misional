@@ -2,6 +2,139 @@
   min-height: 100%;
   background-color: transparent;
   animation: fadeIn var(--transition-slow) ease-out;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Decorative circles - Multiple bubbles throughout the page */
+.page::before,
+.page::after {
+  content: '';
+  position: fixed;
+  border-radius: 9999px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+}
+
+/* Top-left large circle */
+.page::before {
+  width: 12rem;
+  height: 12rem;
+  top: -4rem;
+  left: -4rem;
+  background: radial-gradient(circle, rgba(168, 197, 255, 0.3) 0%, rgba(168, 197, 255, 0.1) 50%, transparent 100%);
+}
+
+/* Bottom-right large circle */
+.page::after {
+  width: 10rem;
+  height: 10rem;
+  bottom: -3rem;
+  right: -3rem;
+  background: radial-gradient(circle, rgba(199, 201, 255, 0.3) 0%, rgba(199, 201, 255, 0.1) 50%, transparent 100%);
+}
+
+/* Additional decorative circles in page-content */
+.page-content {
+  position: relative;
+}
+
+.page-content::before {
+  content: '';
+  position: absolute;
+  border-radius: 9999px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+  width: 8rem;
+  height: 8rem;
+  top: 30%;
+  left: -2rem;
+  background: radial-gradient(circle, rgba(221, 230, 255, 0.4) 0%, rgba(221, 230, 255, 0.2) 50%, transparent 100%);
+}
+
+.page-content::after {
+  content: '';
+  position: absolute;
+  border-radius: 9999px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+  width: 6rem;
+  height: 6rem;
+  top: 60%;
+  right: -1.5rem;
+  background: radial-gradient(circle, rgba(244, 246, 250, 0.5) 0%, rgba(244, 246, 250, 0.2) 50%, transparent 100%);
+}
+
+/* Additional decorative circle using page-header */
+.page-header::before {
+  content: '';
+  position: absolute;
+  border-radius: 9999px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.3;
+  width: 5rem;
+  height: 5rem;
+  top: 50%;
+  right: -1.5rem;
+  background: radial-gradient(circle, rgba(168, 197, 255, 0.3) 0%, rgba(168, 197, 255, 0.1) 50%, transparent 100%);
+}
+
+/* For pages with more content, add additional decorative elements */
+@media (min-height: 800px) {
+  .page::before {
+    width: 14rem;
+    height: 14rem;
+  }
+  
+  .page::after {
+    width: 12rem;
+    height: 12rem;
+  }
+  
+  .page-content::before {
+    width: 10rem;
+    height: 10rem;
+    top: 25%;
+  }
+  
+  .page-content::after {
+    width: 8rem;
+    height: 8rem;
+    top: 55%;
+  }
+  
+  .page-header::before {
+    width: 6rem;
+    height: 6rem;
+  }
+}
+
+/* For very long pages, add one more circle */
+@media (min-height: 1200px) {
+  .page-header::after {
+    content: '';
+    position: absolute;
+    border-radius: 9999px;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.25;
+    width: 7rem;
+    height: 7rem;
+    bottom: -3rem;
+    left: 20%;
+    background: radial-gradient(circle, rgba(199, 201, 255, 0.3) 0%, rgba(199, 201, 255, 0.1) 50%, transparent 100%);
+  }
+}
+
+/* Ensure content is above decorative elements */
+.page-header,
+.page-content > * {
+  position: relative;
+  z-index: 1;
 }
 
 .page-header {
@@ -14,6 +147,9 @@
   z-index: 10;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 
 .page-header h1 {
@@ -26,6 +162,8 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
   letter-spacing: -0.5px;
+  display: block;
+  width: 100%;
 }
 
 .page-header p {
@@ -33,6 +171,8 @@
   margin: 0;
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-normal);
+  display: block;
+  width: 100%;
 }
 
 .page-subtitle {
@@ -40,6 +180,8 @@
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-semibold);
   margin-top: 4px;
+  display: block;
+  width: 100%;
 }
 
 .page-content {
@@ -47,6 +189,7 @@
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
+  position: relative;
 }
 
 .profile-section {
@@ -235,29 +378,32 @@
 }
 
 .cards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   margin-bottom: 32px;
+  width: 100%;
 }
 
 .member-card {
-  background: var(--color-surface);
-  border-radius: var(--border-radius-lg);
-  padding: 20px;
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  background: linear-gradient(135deg, #F9FAFF 0%, #F4F6FA 100%);
+  border-radius: 24px;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.8);
   text-decoration: none;
   color: var(--color-text);
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.06);
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  transition: all var(--transition-base);
+  gap: 1rem;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .member-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 .member-card-cta {
@@ -301,9 +447,30 @@
   color: var(--color-text);
 }
 
+.form-group.checkbox {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-group.checkbox label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: var(--font-weight-normal);
+  cursor: pointer;
+  margin: 0;
+}
+
+.form-group.checkbox input[type="checkbox"] {
+  margin: 0;
+  cursor: pointer;
+  width: auto;
+  flex-shrink: 0;
+}
+
 .form-group input,
-.form-group textarea,
-.form-group select {
+.form-group textarea {
   padding: 12px 14px;
   border-radius: var(--border-radius-md);
   border: 2px solid rgba(0, 0, 0, 0.05);
@@ -314,8 +481,7 @@
 }
 
 .form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus {
+.form-group textarea:focus {
   outline: none;
   border-color: var(--color-primary);
   box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
@@ -335,6 +501,10 @@
 .btn-primary:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
+}
+
+.btn-primary-spaced {
+  margin-top: 1.5rem;
 }
 
 .devotional-scripture {

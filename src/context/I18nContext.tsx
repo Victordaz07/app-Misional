@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 import { StorageService } from '../utils/storage';
+import { normalizeStoredRole } from '../config/roles';
 
 // Import JSON translation files
 import esTranslations from '../../i18n/es.json';
@@ -83,10 +84,12 @@ export const I18nProvider: React.FC<I18nProviderProps> = ({ children }) => {
 
     useEffect(() => {
         loadLocale();
-        // Cargar rol desde storage
-        const storedRole = StorageService.getItem('userRole');
-        if (storedRole) {
-            setUserRoleState(storedRole);
+        // Cargar rol desde storage y normalizarlo
+        const storedRoleRaw = StorageService.getItem('userRole');
+        if (storedRoleRaw) {
+            // Normalize role using centralized normalizer (handles legacy values)
+            const normalizedRole = normalizeStoredRole(storedRoleRaw);
+            setUserRoleState(normalizedRole);
         }
         
         // Escuchar cambios en storage usando storage event (más eficiente)

@@ -32,20 +32,24 @@
 }
 
 .member-card {
-  background: var(--color-surface, #ffffff);
-  border-radius: var(--border-radius-lg, 12px);
-  padding: var(--spacing-lg, 24px);
+  background: linear-gradient(135deg, #F9FAFF 0%, #F4F6FA 100%);
+  border-radius: 24px;
+  padding: 1.5rem;
   text-decoration: none;
   color: inherit;
   display: flex;
   flex-direction: column;
-  box-shadow: var(--shadow-md, 0 4px 6px -1px rgba(0, 0, 0, 0.1));
-  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  width: 100%;
+  box-sizing: border-box;
+  gap: 1rem;
 }
 
 .member-card:hover {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.1));
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 .member-card h3 {

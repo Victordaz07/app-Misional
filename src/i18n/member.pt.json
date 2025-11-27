@@ -607,6 +607,28 @@
       "badge.leader": "Líder",
       "title": "Como você quer ver esta seção?",
       "subtitle": "Seu perfil determina se você pode acessar as ferramentas de liderança. Você sempre poderá usar a visão de membro."
+    },
+    "activities": {
+      "category": "Praticar",
+      "title": "Atividades interativas",
+      "subtitle": "Primeiro estude, depois pratique o que aprendeu.",
+      "description": "Use essas dinâmicas como complemento. Primeiro estude, depois reforce o que aprendeu agindo.",
+      "filterByModule": "Filtrar por módulo",
+      "allModules": "Todos os módulos",
+      "activitiesCount": "atividades",
+      "level": "Nível",
+      "start": "Começar",
+      "selectedActivity": "Atividade selecionada",
+      "selectActivity": "Selecione uma atividade",
+      "selectActivityDescription": "Escolha um cartão para abri-lo aqui. Você pode repeti-los sem perder o foco do seu estudo."
+    },
+    "activityTypes": {
+      "QUIZ_SINGLE": "Quiz doutrinal",
+      "SCENARIO": "Situações reais",
+      "QUIZ_SCRIPTURE_MATCH": "Escrituras para cada necessidade",
+      "CHARACTER_GUESS": "Personagens e exemplos",
+      "REAL_WORLD_MISSION": "Missões na vida real",
+      "READING_BLOCK": "Blocos de leitura"
     }
   }
 }

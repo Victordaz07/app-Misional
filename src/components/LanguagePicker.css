@@ -1,22 +1,30 @@
 .language-picker {
-  margin: 10px 0;
+  margin: 0;
 }
 
 .language-picker-button {
-  background-color: #f0f0f0;
-  padding: 15px;
-  border-radius: 10px;
-  border: 1px solid #e0e0e0;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 0.75rem 1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(224, 230, 255, 0.8);
   width: 100%;
-  font-size: 16px;
-  color: #2c3e50;
-  text-align: center;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #4A4A4A;
+  text-align: left;
   cursor: pointer;
   transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .language-picker-button:hover {
-  background-color: #e0e0e0;
+  background: rgba(255, 255, 255, 1);
+  border-color: #9AB7FF;
+  box-shadow: 0 2px 8px rgba(154, 183, 255, 0.15);
+  transform: translateY(-1px);
 }
 
 .language-picker-compact {
